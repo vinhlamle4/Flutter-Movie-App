@@ -9,12 +9,6 @@
 
 import 'package:flutter/widgets.dart';
 
-class $LibGen {
-  const $LibGen();
-
-  $LibConfigGen get config => const $LibConfigGen();
-}
-
 class $AssetsImageGen {
   const $AssetsImageGen();
 
@@ -39,27 +33,10 @@ class $AssetsImageGen {
       [background, background1, background2, background3];
 }
 
-class $LibConfigGen {
-  const $LibConfigGen();
-
-  /// File path: lib/config/app_router.dart
-  String get appRouter => 'lib/config/app_router.dart';
-
-  /// File path: lib/config/app_router.gr.dart
-  String get appRouterGr => 'lib/config/app_router.gr.dart';
-
-  /// File path: lib/config/border_radius.dart
-  String get borderRadius => 'lib/config/border_radius.dart';
-
-  /// List of all assets
-  List<String> get values => [appRouter, appRouterGr, borderRadius];
-}
-
 class Assets {
   Assets._();
 
   static const $AssetsImageGen image = $AssetsImageGen();
-  static const $LibGen lib = $LibGen();
 }
 
 class AssetGenImage {
@@ -120,7 +97,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
