@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      source_gen:combining_builder:
+        options:
+          build_extensions:
+            '^lib/data/models/{{}}.dart': 'lib/data/models/generated/{{}}.g.dart'
+            '^lib/data/remote/{{}}.dart': 'lib/data/remote/generated/{{}}.g.dart'
+            '^lib/data/repository/{{}}.dart': 'lib/data/repository/generated/{{}}.g.dart'
+            '^lib/notifier/{{}}.dart': 'lib/notifier/generated/{{}}.g.dart'
+      freezed:
+        options:
+          build_extensions:
+            '^lib/data/models/{{}}.dart': 'lib/data/models/generated/{{}}.freezed.dart'
