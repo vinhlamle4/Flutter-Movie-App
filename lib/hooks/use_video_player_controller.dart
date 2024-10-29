@@ -25,8 +25,8 @@ class _VideoPlayerControllerHook extends Hook<VideoPlayerController> {
     required this.autoPlay,
     required this.looping,
     required this.onInitialCompleted,
-    List<Object?>? keys,
-  }) : super(keys: keys);
+    super.keys,
+  });
 
   final String url;
   final bool autoPlay;
@@ -45,7 +45,7 @@ class _VideoPlayerControllerHookState
 
   @override
   void initHook() {
-    _controller = VideoPlayerController.network(hook.url);
+    _controller = VideoPlayerController.networkUrl(Uri.parse(hook.url));
     _controller.initialize().then((_) {
       debugPrint('video initialized ${_controller.value.isInitialized}');
       hook.onInitialCompleted();

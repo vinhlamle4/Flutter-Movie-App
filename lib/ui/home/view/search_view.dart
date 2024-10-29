@@ -8,13 +8,13 @@ import 'package:movie_app/utils/app_color.dart';
 
 class SearchView extends HookConsumerWidget {
   const SearchView({
-    Key? key,
+    super.key,
     this.readOnly = false,
     this.autoFocus = false,
     this.onTap,
     this.onChanged,
     this.onFieldSubmitted,
-  }) : super(key: key);
+  });
 
   final bool autoFocus;
   final bool readOnly;

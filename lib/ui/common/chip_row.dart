@@ -4,9 +4,9 @@ import 'package:movie_app/theme/layout_size.dart';
 
 class ChipRow extends StatelessWidget {
   const ChipRow({
-    Key? key,
+    super.key,
     required this.items,
-  }) : super(key: key);
+  });
 
   final List items;
 

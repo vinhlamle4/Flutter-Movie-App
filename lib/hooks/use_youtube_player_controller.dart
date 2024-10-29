@@ -25,8 +25,8 @@ class _VideoPlayerControllerHook extends Hook<YoutubePlayerController> {
     required this.autoPlay,
     required this.looping,
     required this.onInitialCompleted,
-    List<Object?>? keys,
-  }) : super(keys: keys);
+    super.keys,
+  });
 
   final String videoId;
   final bool autoPlay;

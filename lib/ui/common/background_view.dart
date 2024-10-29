@@ -6,9 +6,9 @@ import 'package:movie_app/gen/assets.gen.dart';
 
 class BackgroundView extends StatelessWidget {
   const BackgroundView({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

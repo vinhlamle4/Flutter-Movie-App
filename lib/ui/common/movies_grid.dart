@@ -9,10 +9,10 @@ import 'package:movie_app/utils/constans.dart';
 
 class MoviesGrid extends StatelessWidget {
   const MoviesGrid({
-    Key? key,
+    super.key,
     required this.movies,
     required this.onItemTap,
-  }) : super(key: key);
+  });
 
   final List<Movie> movies;
   final Function(Movie) onItemTap;

@@ -14,12 +14,12 @@ import 'package:movie_app/utils/constans.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({
-    Key? key,
+    super.key,
     required this.movieTitle,
     required this.movies,
     required this.onItemTap,
     required this.seeMoreTap,
-  }) : super(key: key);
+  });
 
   final String movieTitle;
   final List<Movie> movies;

@@ -6,18 +6,18 @@ part of '../../movie/movie_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MovieResult _$$_MovieResultFromJson(Map<String, dynamic> json) =>
-    _$_MovieResult(
-      page: json['page'] as int? ?? 0,
+_$MovieResultImpl _$$MovieResultImplFromJson(Map<String, dynamic> json) =>
+    _$MovieResultImpl(
+      page: (json['page'] as num?)?.toInt() ?? 0,
       results: (json['results'] as List<dynamic>?)
               ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      totalPages: json['total_pages'] as int? ?? 0,
-      totalResults: json['total_results'] as int? ?? 0,
+      totalPages: (json['total_pages'] as num?)?.toInt() ?? 0,
+      totalResults: (json['total_results'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$_MovieResultToJson(_$_MovieResult instance) =>
+Map<String, dynamic> _$$MovieResultImplToJson(_$MovieResultImpl instance) =>
     <String, dynamic>{
       'page': instance.page,
       'results': instance.results,

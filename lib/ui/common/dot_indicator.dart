@@ -3,12 +3,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class NewDotIndicator extends StatefulWidget {
   const NewDotIndicator({
-    Key? key,
+    super.key,
     required this.color,
     required this.fontSize,
     this.numberOfDots = 3,
     this.dotSpacing = 0.0,
-  }) : super(key: key);
+  });
 
   final Color color;
   final double fontSize;
@@ -90,12 +90,12 @@ class _NewDotIndicatorState extends State<NewDotIndicator>
 
 class DotIndicator extends HookWidget {
   DotIndicator({
-    Key? key,
+    super.key,
     required this.color,
     required this.fontSize,
     this.numberOfDots = 3,
     this.dotSpacing = 0.0,
-  }) : super(key: key);
+  });
 
   final Color color;
   final double fontSize;
@@ -177,11 +177,10 @@ class _JumpingDot extends AnimatedWidget {
   final double? fontSize;
 
   const _JumpingDot(
-      {Key? key,
-      required Animation<double> animation,
+      {required Animation<double> animation,
       this.color,
       this.fontSize})
-      : super(key: key, listenable: animation);
+      : super(listenable: animation);
 
   @override
   Widget build(BuildContext context) {

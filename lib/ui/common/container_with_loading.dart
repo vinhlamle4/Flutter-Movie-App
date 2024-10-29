@@ -5,9 +5,9 @@ import 'package:movie_app/ui/common/loading_indicator.dart';
 
 class ContainerWithLoading extends HookConsumerWidget {
   const ContainerWithLoading({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

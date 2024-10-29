@@ -22,12 +22,12 @@ import 'package:movie_app/utils/enum.dart';
 @RoutePage()
 class MovieListScreen extends HookConsumerWidget {
   const MovieListScreen({
-    Key? key,
+    super.key,
     required this.title,
     required this.movies,
     required this.totalPages,
     required this.movieType,
-  }) : super(key: key);
+  });
 
   final String title;
   final List<Movie> movies;
@@ -124,7 +124,7 @@ class MovieListScreen extends HookConsumerWidget {
               PopButton(
                 backgroundColor: AppColor.transparent,
                 onBackPressed: () {
-                  router.pop();
+                  router.maybePop();
                 },
               ),
               Center(

@@ -12,7 +12,7 @@ part of '../../movie/movie_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MovieResult _$MovieResultFromJson(Map<String, dynamic> json) {
   return _MovieResult.fromJson(json);
@@ -96,11 +96,11 @@ class _$MovieResultCopyWithImpl<$Res, $Val extends MovieResult>
 }
 
 /// @nodoc
-abstract class _$$_MovieResultCopyWith<$Res>
+abstract class _$$MovieResultImplCopyWith<$Res>
     implements $MovieResultCopyWith<$Res> {
-  factory _$$_MovieResultCopyWith(
-          _$_MovieResult value, $Res Function(_$_MovieResult) then) =
-      __$$_MovieResultCopyWithImpl<$Res>;
+  factory _$$MovieResultImplCopyWith(
+          _$MovieResultImpl value, $Res Function(_$MovieResultImpl) then) =
+      __$$MovieResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,11 +111,11 @@ abstract class _$$_MovieResultCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MovieResultCopyWithImpl<$Res>
-    extends _$MovieResultCopyWithImpl<$Res, _$_MovieResult>
-    implements _$$_MovieResultCopyWith<$Res> {
-  __$$_MovieResultCopyWithImpl(
-      _$_MovieResult _value, $Res Function(_$_MovieResult) _then)
+class __$$MovieResultImplCopyWithImpl<$Res>
+    extends _$MovieResultCopyWithImpl<$Res, _$MovieResultImpl>
+    implements _$$MovieResultImplCopyWith<$Res> {
+  __$$MovieResultImplCopyWithImpl(
+      _$MovieResultImpl _value, $Res Function(_$MovieResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +126,7 @@ class __$$_MovieResultCopyWithImpl<$Res>
     Object? totalPages = null,
     Object? totalResults = null,
   }) {
-    return _then(_$_MovieResult(
+    return _then(_$MovieResultImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -149,15 +149,15 @@ class __$$_MovieResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MovieResult implements _MovieResult {
-  _$_MovieResult(
+class _$MovieResultImpl implements _MovieResult {
+  _$MovieResultImpl(
       {@JsonKey(name: "page") this.page = 0,
       @JsonKey(name: "results") this.results = const [],
       @JsonKey(name: "total_pages") this.totalPages = 0,
       @JsonKey(name: "total_results") this.totalResults = 0});
 
-  factory _$_MovieResult.fromJson(Map<String, dynamic> json) =>
-      _$$_MovieResultFromJson(json);
+  factory _$MovieResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MovieResultImplFromJson(json);
 
   @override
   @JsonKey(name: "page")
@@ -180,12 +180,12 @@ class _$_MovieResult implements _MovieResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MovieResultCopyWith<_$_MovieResult> get copyWith =>
-      __$$_MovieResultCopyWithImpl<_$_MovieResult>(this, _$identity);
+  _$$MovieResultImplCopyWith<_$MovieResultImpl> get copyWith =>
+      __$$MovieResultImplCopyWithImpl<_$MovieResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MovieResultToJson(
+    return _$$MovieResultImplToJson(
       this,
     );
   }
@@ -196,10 +196,10 @@ abstract class _MovieResult implements MovieResult {
       {@JsonKey(name: "page") int page,
       @JsonKey(name: "results") List<Movie> results,
       @JsonKey(name: "total_pages") int totalPages,
-      @JsonKey(name: "total_results") int totalResults}) = _$_MovieResult;
+      @JsonKey(name: "total_results") int totalResults}) = _$MovieResultImpl;
 
   factory _MovieResult.fromJson(Map<String, dynamic> json) =
-      _$_MovieResult.fromJson;
+      _$MovieResultImpl.fromJson;
 
   @override
   @JsonKey(name: "page")
@@ -223,6 +223,6 @@ abstract class _MovieResult implements MovieResult {
   set totalResults(int value);
   @override
   @JsonKey(ignore: true)
-  _$$_MovieResultCopyWith<_$_MovieResult> get copyWith =>
+  _$$MovieResultImplCopyWith<_$MovieResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

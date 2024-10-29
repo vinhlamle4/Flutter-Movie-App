@@ -1,5 +1,5 @@
 .PHONY: pub get
-pub_get:
+get:
 	flutter clean
 	flutter pub get
 

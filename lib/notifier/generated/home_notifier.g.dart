@@ -6,7 +6,7 @@ part of '../home_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeNotifierHash() => r'c94891a92bb80859dfd8750cbb186fb064e92b08';
+String _$homeNotifierHash() => r'6690fadbadc930f61e1b5ba35f1be89b33d2f682';
 
 /// See also [HomeNotifier].
 @ProviderFor(HomeNotifier)
@@ -21,4 +21,5 @@ final homeNotifierProvider =
 );
 
 typedef _$HomeNotifier = AutoDisposeNotifier<AsyncValue<HomeModel>>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

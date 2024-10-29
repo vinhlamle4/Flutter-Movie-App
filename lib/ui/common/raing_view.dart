@@ -6,11 +6,11 @@ import 'package:movie_app/utils/app_color.dart';
 
 class RatingView extends StatelessWidget {
   const RatingView({
-    Key? key,
+    super.key,
     required this.initRating,
     this.onRatingUpdate,
     this.itemSize = LayoutSize.pt16,
-  }) : super(key: key);
+  });
 
   final double initRating;
   final double itemSize;

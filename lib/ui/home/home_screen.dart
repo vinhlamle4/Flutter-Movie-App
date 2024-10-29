@@ -20,34 +20,37 @@ import 'package:movie_app/utils/enum.dart';
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
     final homeState = ref.watch(homeNotifierProvider);
+    final homeNotifier = ref.read(homeNotifierProvider.notifier);
+
+    final body = homeState.when(
+      data: (response) => _buildBody(response, router, context, homeNotifier),
+      error: (error, stackTrace) {
+        String message = "App Error";
+        if (error is AppError) {
+          message = error.message;
+        }
+        return Container(
+          alignment: Alignment.bottomCenter,
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+          ).paddingAll(value: LayoutSize.pt32),
+        );
+      },
+      loading: () => const PrimaryLoadingIndicator(),
+    );
 
     return Scaffold(
       body: SafeArea(
         child: BackgroundView(
-          child: homeState.when(
-            data: (response) => _buildBody(response, router, context),
-            error: (error, stackTrace) {
-              String message = "App Error";
-              if (error is AppError) {
-                message = error.message;
-              }
-              return Container(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  message,
-                  textAlign: TextAlign.center,
-                ).paddingAll(value: LayoutSize.pt32),
-              );
-            },
-            loading: () => const PrimaryLoadingIndicator(),
-          ),
+          child: body,
         ),
       ),
     );
@@ -57,103 +60,109 @@ class HomeScreen extends HookConsumerWidget {
     HomeModel homeModel,
     StackRouter router,
     BuildContext context,
+    HomeNotifier homeNotifier,
   ) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: ListView(
-        children: [
-          const SizedBox(height: LayoutSize.pt32),
-          SearchView(
-            readOnly: true,
-            onTap: () {
-              router.push(SearchRoute(heroTag: "search_view"));
-            },
-          ).paddingH(value: LayoutSize.pt16),
-          Text(
-            MovieType.nowPlay.title,
-            style: MyTextStyle.title.bold(),
-          ).paddingVH(vertical: LayoutSize.pt24, horizontal: LayoutSize.pt16),
-          TrendingMovie(
-            movies: homeModel.trendingMovie.results,
-            onItemTap: (movie) {
-              router.push(
-                MovieDetailRoute(
-                  heroTag: "${MovieType.nowPlay.name}${movie.id}",
-                  movie: movie,
-                ),
-              );
-            },
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: MovieList(
-              movieTitle: MovieType.popular.title,
-              movies: homeModel.popularMovie.results,
-              seeMoreTap: () {
+      child: RefreshIndicator(
+        onRefresh: () async {
+          await homeNotifier.getMovie();
+        },
+        child: ListView(
+          children: [
+            const SizedBox(height: LayoutSize.pt32),
+            SearchView(
+              readOnly: true,
+              onTap: () {
+                router.push(SearchRoute(heroTag: "search_view"));
+              },
+            ).paddingH(value: LayoutSize.pt16),
+            Text(
+              MovieType.nowPlay.title,
+              style: MyTextStyle.title.bold(),
+            ).paddingVH(vertical: LayoutSize.pt24, horizontal: LayoutSize.pt16),
+            TrendingMovie(
+              movies: homeModel.trendingMovie.results,
+              onItemTap: (movie) {
                 router.push(
-                  MovieListRoute(
-                    title: MovieType.popular.title,
-                    movieType: MovieType.popular,
-                    movies: homeModel.popularMovie.results,
-                    totalPages: homeModel.popularMovie.totalPages,
+                  MovieDetailRoute(
+                    heroTag: "${MovieType.nowPlay.name}${movie.id}",
+                    movie: movie,
                   ),
                 );
-              },
-              onItemTap: (movie) {
-                router.push(MovieDetailRoute(
-                    heroTag: "${MovieType.popular.name}${movie.id}",
-                    movie: movie));
               },
             ),
-          ).paddingH(value: LayoutSize.pt16),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: MovieList(
-              movieTitle: MovieType.topRated.title,
-              movies: homeModel.topRatedMovie.results,
-              seeMoreTap: () {
-                router.push(
-                  MovieListRoute(
-                    title: MovieType.topRated.title,
-                    movieType: MovieType.topRated,
-                    movies: homeModel.topRatedMovie.results,
-                    totalPages: homeModel.topRatedMovie.totalPages,
-                  ),
-                );
-              },
-              onItemTap: (movie) {
-                router.push(MovieDetailRoute(
-                    heroTag: "${MovieType.topRated.name}${movie.id}",
-                    movie: movie));
-              },
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: MovieList(
+                movieTitle: MovieType.popular.title,
+                movies: homeModel.popularMovie.results,
+                seeMoreTap: () {
+                  router.push(
+                    MovieListRoute(
+                      title: MovieType.popular.title,
+                      movieType: MovieType.popular,
+                      movies: homeModel.popularMovie.results,
+                      totalPages: homeModel.popularMovie.totalPages,
+                    ),
+                  );
+                },
+                onItemTap: (movie) {
+                  router.push(MovieDetailRoute(
+                      heroTag: "${MovieType.popular.name}${movie.id}",
+                      movie: movie));
+                },
+              ),
             ).paddingH(value: LayoutSize.pt16),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: MovieList(
-              movieTitle: MovieType.upcoming.title,
-              movies: homeModel.upComingMovie.results,
-              seeMoreTap: () {
-                router.push(
-                  MovieListRoute(
-                    title: MovieType.upcoming.title,
-                    movieType: MovieType.upcoming,
-                    movies: homeModel.upComingMovie.results,
-                    totalPages: homeModel.upComingMovie.totalPages,
-                  ),
-                );
-              },
-              onItemTap: (movie) {
-                router.push(MovieDetailRoute(
-                    heroTag: "${MovieType.upcoming.name}${movie.id}",
-                    movie: movie));
-              },
-            ).paddingH(value: LayoutSize.pt16),
-          ),
-          const SizedBox(height: LayoutSize.pt32),
-        ],
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: MovieList(
+                movieTitle: MovieType.topRated.title,
+                movies: homeModel.topRatedMovie.results,
+                seeMoreTap: () {
+                  router.push(
+                    MovieListRoute(
+                      title: MovieType.topRated.title,
+                      movieType: MovieType.topRated,
+                      movies: homeModel.topRatedMovie.results,
+                      totalPages: homeModel.topRatedMovie.totalPages,
+                    ),
+                  );
+                },
+                onItemTap: (movie) {
+                  router.push(MovieDetailRoute(
+                      heroTag: "${MovieType.topRated.name}${movie.id}",
+                      movie: movie));
+                },
+              ).paddingH(value: LayoutSize.pt16),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: MovieList(
+                movieTitle: MovieType.upcoming.title,
+                movies: homeModel.upComingMovie.results,
+                seeMoreTap: () {
+                  router.push(
+                    MovieListRoute(
+                      title: MovieType.upcoming.title,
+                      movieType: MovieType.upcoming,
+                      movies: homeModel.upComingMovie.results,
+                      totalPages: homeModel.upComingMovie.totalPages,
+                    ),
+                  );
+                },
+                onItemTap: (movie) {
+                  router.push(MovieDetailRoute(
+                      heroTag: "${MovieType.upcoming.name}${movie.id}",
+                      movie: movie));
+                },
+              ).paddingH(value: LayoutSize.pt16),
+            ),
+            const SizedBox(height: LayoutSize.pt32),
+          ],
+        ),
       ),
     );
   }

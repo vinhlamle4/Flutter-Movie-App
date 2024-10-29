@@ -16,7 +16,7 @@ part 'app_router.gr.dart';
 final appRouterProvider = Provider((_) => AppRouter());
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [

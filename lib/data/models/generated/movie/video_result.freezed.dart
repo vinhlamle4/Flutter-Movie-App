@@ -12,7 +12,7 @@ part of '../../movie/video_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 VideoResult _$VideoResultFromJson(Map<String, dynamic> json) {
   return _VideoResult.fromJson(json);
@@ -63,22 +63,22 @@ class _$VideoResultCopyWithImpl<$Res, $Val extends VideoResult>
 }
 
 /// @nodoc
-abstract class _$$_VideoResultCopyWith<$Res>
+abstract class _$$VideoResultImplCopyWith<$Res>
     implements $VideoResultCopyWith<$Res> {
-  factory _$$_VideoResultCopyWith(
-          _$_VideoResult value, $Res Function(_$_VideoResult) then) =
-      __$$_VideoResultCopyWithImpl<$Res>;
+  factory _$$VideoResultImplCopyWith(
+          _$VideoResultImpl value, $Res Function(_$VideoResultImpl) then) =
+      __$$VideoResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: "results") List<Video> results});
 }
 
 /// @nodoc
-class __$$_VideoResultCopyWithImpl<$Res>
-    extends _$VideoResultCopyWithImpl<$Res, _$_VideoResult>
-    implements _$$_VideoResultCopyWith<$Res> {
-  __$$_VideoResultCopyWithImpl(
-      _$_VideoResult _value, $Res Function(_$_VideoResult) _then)
+class __$$VideoResultImplCopyWithImpl<$Res>
+    extends _$VideoResultCopyWithImpl<$Res, _$VideoResultImpl>
+    implements _$$VideoResultImplCopyWith<$Res> {
+  __$$VideoResultImplCopyWithImpl(
+      _$VideoResultImpl _value, $Res Function(_$VideoResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +86,7 @@ class __$$_VideoResultCopyWithImpl<$Res>
   $Res call({
     Object? results = null,
   }) {
-    return _then(_$_VideoResult(
+    return _then(_$VideoResultImpl(
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -97,14 +97,14 @@ class __$$_VideoResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_VideoResult extends _VideoResult {
-  const _$_VideoResult(
+class _$VideoResultImpl extends _VideoResult {
+  const _$VideoResultImpl(
       {@JsonKey(name: "results") final List<Video> results = const []})
       : _results = results,
         super._();
 
-  factory _$_VideoResult.fromJson(Map<String, dynamic> json) =>
-      _$$_VideoResultFromJson(json);
+  factory _$VideoResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VideoResultImplFromJson(json);
 
   final List<Video> _results;
   @override
@@ -121,10 +121,10 @@ class _$_VideoResult extends _VideoResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_VideoResult &&
+            other is _$VideoResultImpl &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
@@ -136,12 +136,12 @@ class _$_VideoResult extends _VideoResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VideoResultCopyWith<_$_VideoResult> get copyWith =>
-      __$$_VideoResultCopyWithImpl<_$_VideoResult>(this, _$identity);
+  _$$VideoResultImplCopyWith<_$VideoResultImpl> get copyWith =>
+      __$$VideoResultImplCopyWithImpl<_$VideoResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VideoResultToJson(
+    return _$$VideoResultImplToJson(
       this,
     );
   }
@@ -149,17 +149,18 @@ class _$_VideoResult extends _VideoResult {
 
 abstract class _VideoResult extends VideoResult {
   const factory _VideoResult(
-      {@JsonKey(name: "results") final List<Video> results}) = _$_VideoResult;
+          {@JsonKey(name: "results") final List<Video> results}) =
+      _$VideoResultImpl;
   const _VideoResult._() : super._();
 
   factory _VideoResult.fromJson(Map<String, dynamic> json) =
-      _$_VideoResult.fromJson;
+      _$VideoResultImpl.fromJson;
 
   @override
   @JsonKey(name: "results")
   List<Video> get results;
   @override
   @JsonKey(ignore: true)
-  _$$_VideoResultCopyWith<_$_VideoResult> get copyWith =>
+  _$$VideoResultImplCopyWith<_$VideoResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

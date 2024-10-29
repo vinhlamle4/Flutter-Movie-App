@@ -8,7 +8,6 @@ part 'generated/home_notifier.g.dart';
 
 @riverpod
 class HomeNotifier extends _$HomeNotifier {
-
   late final _movieRepo = ref.read(movieRepositoryProvider);
 
   @override
@@ -18,21 +17,28 @@ class HomeNotifier extends _$HomeNotifier {
   }
 
   Future getMovie() async {
+    state = const AsyncValue.loading();
     try {
-      MovieResult trending = MovieResult();
-      MovieResult popular = MovieResult();
-      MovieResult topRated = MovieResult();
-      MovieResult upComing = MovieResult();
-      trending =
-          (await _movieRepo.getMovie(movieType: MovieType.nowPlay)).dataOrThrow;
+      List<MovieResult> movies = [
+        MovieResult(), // trending
+        MovieResult(), // popular
+        MovieResult(), // topRated
+        MovieResult(), // upcoming
+      ];
 
-      popular =
-          (await _movieRepo.getMovie(movieType: MovieType.popular)).dataOrThrow;
-      topRated = (await _movieRepo.getMovie(movieType: MovieType.topRated))
-          .dataOrThrow;
-      upComing = (await _movieRepo.getMovie(movieType: MovieType.upcoming))
-          .dataOrThrow;
-      state = AsyncValue.data(HomeModel(trending, popular, topRated, upComing));
+      final responses = await Future.wait([
+        _movieRepo.getMovie(movieType: MovieType.nowPlay),
+        _movieRepo.getMovie(movieType: MovieType.popular),
+        _movieRepo.getMovie(movieType: MovieType.topRated),
+        _movieRepo.getMovie(movieType: MovieType.upcoming),
+      ]);
+
+      for (int i = 0; i < responses.length; i++) {
+        movies[i] = responses[i].dataOrThrow;
+      }
+
+      state = AsyncValue.data(
+          HomeModel(movies[0], movies[1], movies[2], movies[3]));
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
     }

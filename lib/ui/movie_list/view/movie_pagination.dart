@@ -7,12 +7,12 @@ import 'package:movie_app/utils/app_color.dart';
 
 class MoviePagination extends HookConsumerWidget {
   const MoviePagination({
-    Key? key,
+    super.key,
     required this.totalPages,
     required this.selectedPage,
     this.pagesVisible = 5,
     required this.onPageChanged,
-  }) : super(key: key);
+  });
 
   final int totalPages;
   final int selectedPage;

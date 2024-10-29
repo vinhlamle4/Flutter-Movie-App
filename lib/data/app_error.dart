@@ -18,7 +18,7 @@ class AppError {
   late AppErrorType type;
 
   AppError(Exception? error) {
-    if (error is DioError) {
+    if (error is DioException) {
       debugPrint('AppError(DioError): '
           'type is ${error.type}, message is ${error.message}');
 
@@ -29,7 +29,7 @@ class AppError {
       }
 
       switch (error.type) {
-        case DioErrorType.unknown:
+        case DioExceptionType.unknown:
           if (error.error is SocketException) {
             // SocketException: Failed host lookup: '***'
             // (OS Error: No address associated with hostname, errno = 7)
@@ -38,13 +38,13 @@ class AppError {
             type = AppErrorType.unknown;
           }
           break;
-        case DioErrorType.receiveTimeout:
+        case DioExceptionType.receiveTimeout:
           type = AppErrorType.timeout;
           break;
-        case DioErrorType.sendTimeout:
+        case DioExceptionType.sendTimeout:
           type = AppErrorType.network;
           break;
-        case DioErrorType.badResponse:
+        case DioExceptionType.badResponse:
         // TODO(api): need define more http status;
           switch (error.response?.statusCode) {
             case HttpStatus.badRequest: // 400
@@ -64,7 +64,7 @@ class AppError {
               break;
           }
           break;
-        case DioErrorType.cancel:
+        case DioExceptionType.cancel:
           type = AppErrorType.cancel;
           break;
         default:

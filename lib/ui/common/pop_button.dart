@@ -4,11 +4,11 @@ import 'package:movie_app/theme/layout_size.dart';
 
 class PopButton extends StatelessWidget {
   const PopButton({
-    Key? key,
+    super.key,
     required this.backgroundColor,
     required this.onBackPressed,
     this.paddingIcon,
-  }) : super(key: key);
+  });
 
   final Color backgroundColor;
   final VoidCallback onBackPressed;

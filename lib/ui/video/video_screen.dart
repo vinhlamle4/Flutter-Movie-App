@@ -13,9 +13,9 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 @RoutePage()
 class VideoScreen extends HookConsumerWidget {
   const VideoScreen({
-    Key? key,
+    super.key,
     required this.video,
-  }) : super(key: key);
+  });
 
   final Video video;
 
@@ -35,10 +35,10 @@ class VideoScreen extends HookConsumerWidget {
       }
     });
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (didPop) {
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-        return true;
       },
       child: SafeArea(
         child: Scaffold(
@@ -61,7 +61,7 @@ class VideoScreen extends HookConsumerWidget {
           ),
           onPressed: () {
             controller.toggleFullScreenMode();
-            router.pop();
+            router.maybePop();
           },
         ),
       ],

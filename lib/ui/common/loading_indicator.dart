@@ -4,7 +4,7 @@ import 'package:movie_app/theme/layout_size.dart';
 import 'package:movie_app/utils/app_color.dart';
 
 class PrimaryLoadingIndicator extends StatelessWidget {
-  const PrimaryLoadingIndicator({Key? key}) : super(key: key);
+  const PrimaryLoadingIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {

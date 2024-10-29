@@ -17,11 +17,11 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class MoviePanel extends StatelessWidget {
   const MoviePanel({
-    Key? key,
+    super.key,
     required this.movie,
     required this.panelController,
     required this.onWatchBtnTap,
-  }) : super(key: key);
+  });
 
   final Movie movie;
   final PanelController panelController;
@@ -158,7 +158,7 @@ class MoviePanel extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadiusUtils.circular16(),
             ),

@@ -12,7 +12,7 @@ part of '../../common/result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Result<T> {
@@ -74,20 +74,20 @@ class _$ResultCopyWithImpl<T, $Res, $Val extends Result<T>>
 }
 
 /// @nodoc
-abstract class _$$SuccessCopyWith<T, $Res> {
-  factory _$$SuccessCopyWith(
-          _$Success<T> value, $Res Function(_$Success<T>) then) =
-      __$$SuccessCopyWithImpl<T, $Res>;
+abstract class _$$SuccessImplCopyWith<T, $Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl<T> value, $Res Function(_$SuccessImpl<T>) then) =
+      __$$SuccessImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$SuccessCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$Success<T>>
-    implements _$$SuccessCopyWith<T, $Res> {
-  __$$SuccessCopyWithImpl(
-      _$Success<T> _value, $Res Function(_$Success<T>) _then)
+class __$$SuccessImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$SuccessImpl<T>>
+    implements _$$SuccessImplCopyWith<T, $Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl<T> _value, $Res Function(_$SuccessImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +95,7 @@ class __$$SuccessCopyWithImpl<T, $Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$Success<T>(
+    return _then(_$SuccessImpl<T>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -106,8 +106,8 @@ class __$$SuccessCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$Success<T> extends Success<T> with DiagnosticableTreeMixin {
-  const _$Success({required this.data}) : super._();
+class _$SuccessImpl<T> extends Success<T> with DiagnosticableTreeMixin {
+  const _$SuccessImpl({required this.data}) : super._();
 
   @override
   final T data;
@@ -126,10 +126,10 @@ class _$Success<T> extends Success<T> with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Success<T> &&
+            other is _$SuccessImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -140,8 +140,8 @@ class _$Success<T> extends Success<T> with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
-      __$$SuccessCopyWithImpl<T, _$Success<T>>(this, _$identity);
+  _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
+      __$$SuccessImplCopyWithImpl<T, _$SuccessImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -207,30 +207,30 @@ class _$Success<T> extends Success<T> with DiagnosticableTreeMixin {
 }
 
 abstract class Success<T> extends Result<T> {
-  const factory Success({required final T data}) = _$Success<T>;
+  const factory Success({required final T data}) = _$SuccessImpl<T>;
   const Success._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
+  _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FailureCopyWith<T, $Res> {
-  factory _$$FailureCopyWith(
-          _$Failure<T> value, $Res Function(_$Failure<T>) then) =
-      __$$FailureCopyWithImpl<T, $Res>;
+abstract class _$$FailureImplCopyWith<T, $Res> {
+  factory _$$FailureImplCopyWith(
+          _$FailureImpl<T> value, $Res Function(_$FailureImpl<T>) then) =
+      __$$FailureImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({AppError error});
 }
 
 /// @nodoc
-class __$$FailureCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$Failure<T>>
-    implements _$$FailureCopyWith<T, $Res> {
-  __$$FailureCopyWithImpl(
-      _$Failure<T> _value, $Res Function(_$Failure<T>) _then)
+class __$$FailureImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$FailureImpl<T>>
+    implements _$$FailureImplCopyWith<T, $Res> {
+  __$$FailureImplCopyWithImpl(
+      _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -238,7 +238,7 @@ class __$$FailureCopyWithImpl<T, $Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$Failure<T>(
+    return _then(_$FailureImpl<T>(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -249,8 +249,8 @@ class __$$FailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$Failure<T> extends Failure<T> with DiagnosticableTreeMixin {
-  const _$Failure({required this.error}) : super._();
+class _$FailureImpl<T> extends Failure<T> with DiagnosticableTreeMixin {
+  const _$FailureImpl({required this.error}) : super._();
 
   @override
   final AppError error;
@@ -269,10 +269,10 @@ class _$Failure<T> extends Failure<T> with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Failure<T> &&
+            other is _$FailureImpl<T> &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -282,8 +282,8 @@ class _$Failure<T> extends Failure<T> with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureCopyWith<T, _$Failure<T>> get copyWith =>
-      __$$FailureCopyWithImpl<T, _$Failure<T>>(this, _$identity);
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
+      __$$FailureImplCopyWithImpl<T, _$FailureImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -349,11 +349,11 @@ class _$Failure<T> extends Failure<T> with DiagnosticableTreeMixin {
 }
 
 abstract class Failure<T> extends Result<T> {
-  const factory Failure({required final AppError error}) = _$Failure<T>;
+  const factory Failure({required final AppError error}) = _$FailureImpl<T>;
   const Failure._() : super._();
 
   AppError get error;
   @JsonKey(ignore: true)
-  _$$FailureCopyWith<T, _$Failure<T>> get copyWith =>
+  _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

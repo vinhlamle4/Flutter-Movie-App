@@ -5,10 +5,10 @@ import 'loading_indicator.dart';
 
 class CacheImage extends StatelessWidget {
   const CacheImage({
-    Key? key,
+    super.key,
     required this.imgUrl,
     required this.child,
-  }) : super(key: key);
+  });
 
   final String imgUrl;
   final Widget child;

@@ -10,10 +10,10 @@ import 'package:movie_app/ui/common/cache_image.dart';
 
 class TrendingMovie extends StatelessWidget {
   const TrendingMovie({
-    Key? key,
+    super.key,
     required this.movies,
     required this.onItemTap,
-  }) : super(key: key);
+  });
 
   final List<Movie> movies;
   final Function(Movie) onItemTap;

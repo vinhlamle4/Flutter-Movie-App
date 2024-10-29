@@ -20,10 +20,10 @@ import 'package:movie_app/utils/app_color.dart';
 @RoutePage()
 class MovieDetailScreen extends HookConsumerWidget {
   const MovieDetailScreen({
-    Key? key,
+    super.key,
     required this.heroTag,
     required this.movie,
-  }) : super(key: key);
+  });
 
   final String heroTag;
   final Movie movie;
@@ -59,7 +59,7 @@ class MovieDetailScreen extends HookConsumerWidget {
                 PopButton(
                   backgroundColor: AppColor.blackOpacity4,
                   onBackPressed: () {
-                    router.pop();
+                    router.maybePop();
                   },
                 ).paddingEdge(left: LayoutSize.pt8, top: LayoutSize.pt16),
                 MoviePanel(

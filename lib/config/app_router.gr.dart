@@ -9,65 +9,6 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    VideoRoute.name: (routeData) {
-      final args = routeData.argsAs<VideoRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: VideoScreen(
-          key: args.key,
-          video: args.video,
-        ),
-      );
-    },
-    MovieListRoute.name: (routeData) {
-      final args = routeData.argsAs<MovieListRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MovieListScreen(
-          key: args.key,
-          title: args.title,
-          movies: args.movies,
-          totalPages: args.totalPages,
-          movieType: args.movieType,
-        ),
-      );
-    },
-    SearchRoute.name: (routeData) {
-      final args = routeData.argsAs<SearchRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: SearchScreen(
-          key: args.key,
-          heroTag: args.heroTag,
-        ),
-      );
-    },
-    MovieDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<MovieDetailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MovieDetailScreen(
-          key: args.key,
-          heroTag: args.heroTag,
-          movie: args.movie,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
@@ -79,43 +20,63 @@ class HomeRoute extends PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
+    },
+  );
 }
 
 /// generated route for
-/// [VideoScreen]
-class VideoRoute extends PageRouteInfo<VideoRouteArgs> {
-  VideoRoute({
+/// [MovieDetailScreen]
+class MovieDetailRoute extends PageRouteInfo<MovieDetailRouteArgs> {
+  MovieDetailRoute({
     Key? key,
-    required Video video,
+    required String heroTag,
+    required Movie movie,
     List<PageRouteInfo>? children,
   }) : super(
-          VideoRoute.name,
-          args: VideoRouteArgs(
+          MovieDetailRoute.name,
+          args: MovieDetailRouteArgs(
             key: key,
-            video: video,
+            heroTag: heroTag,
+            movie: movie,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'VideoRoute';
+  static const String name = 'MovieDetailRoute';
 
-  static const PageInfo<VideoRouteArgs> page = PageInfo<VideoRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MovieDetailRouteArgs>();
+      return MovieDetailScreen(
+        key: args.key,
+        heroTag: args.heroTag,
+        movie: args.movie,
+      );
+    },
+  );
 }
 
-class VideoRouteArgs {
-  const VideoRouteArgs({
+class MovieDetailRouteArgs {
+  const MovieDetailRouteArgs({
     this.key,
-    required this.video,
+    required this.heroTag,
+    required this.movie,
   });
 
   final Key? key;
 
-  final Video video;
+  final String heroTag;
+
+  final Movie movie;
 
   @override
   String toString() {
-    return 'VideoRouteArgs{key: $key, video: $video}';
+    return 'MovieDetailRouteArgs{key: $key, heroTag: $heroTag, movie: $movie}';
   }
 }
 
@@ -143,8 +104,19 @@ class MovieListRoute extends PageRouteInfo<MovieListRouteArgs> {
 
   static const String name = 'MovieListRoute';
 
-  static const PageInfo<MovieListRouteArgs> page =
-      PageInfo<MovieListRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MovieListRouteArgs>();
+      return MovieListScreen(
+        key: args.key,
+        title: args.title,
+        movies: args.movies,
+        totalPages: args.totalPages,
+        movieType: args.movieType,
+      );
+    },
+  );
 }
 
 class MovieListRouteArgs {
@@ -190,7 +162,16 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
 
   static const String name = 'SearchRoute';
 
-  static const PageInfo<SearchRouteArgs> page = PageInfo<SearchRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SearchRouteArgs>();
+      return SearchScreen(
+        key: args.key,
+        heroTag: args.heroTag,
+      );
+    },
+  );
 }
 
 class SearchRouteArgs {
@@ -210,44 +191,47 @@ class SearchRouteArgs {
 }
 
 /// generated route for
-/// [MovieDetailScreen]
-class MovieDetailRoute extends PageRouteInfo<MovieDetailRouteArgs> {
-  MovieDetailRoute({
+/// [VideoScreen]
+class VideoRoute extends PageRouteInfo<VideoRouteArgs> {
+  VideoRoute({
     Key? key,
-    required String heroTag,
-    required Movie movie,
+    required Video video,
     List<PageRouteInfo>? children,
   }) : super(
-          MovieDetailRoute.name,
-          args: MovieDetailRouteArgs(
+          VideoRoute.name,
+          args: VideoRouteArgs(
             key: key,
-            heroTag: heroTag,
-            movie: movie,
+            video: video,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'MovieDetailRoute';
+  static const String name = 'VideoRoute';
 
-  static const PageInfo<MovieDetailRouteArgs> page =
-      PageInfo<MovieDetailRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<VideoRouteArgs>();
+      return VideoScreen(
+        key: args.key,
+        video: args.video,
+      );
+    },
+  );
 }
 
-class MovieDetailRouteArgs {
-  const MovieDetailRouteArgs({
+class VideoRouteArgs {
+  const VideoRouteArgs({
     this.key,
-    required this.heroTag,
-    required this.movie,
+    required this.video,
   });
 
   final Key? key;
 
-  final String heroTag;
-
-  final Movie movie;
+  final Video video;
 
   @override
   String toString() {
-    return 'MovieDetailRouteArgs{key: $key, heroTag: $heroTag, movie: $movie}';
+    return 'VideoRouteArgs{key: $key, video: $video}';
   }
 }
